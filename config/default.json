@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://echonabin:n481n7h494@cluster0.1am16.mongodb.net/dev_connector?retryWrites=true&w=majority",
+    "jwtSecret": "thisappsecret"
+}
