@@ -13,6 +13,7 @@ mongoose
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   })
   .then(
     app.listen(port, () => console.log(`Social app listening on port ${port}`))
@@ -22,5 +23,5 @@ mongoose
 app.use(bodyParser.json());
 app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoute);
-app.use("/api/profile", profilesRoute);
+app.use("/api/profiles", profilesRoute);
 app.use("/api/auth", authRoute);
