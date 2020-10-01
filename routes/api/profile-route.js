@@ -41,4 +41,6 @@ router.put(
 );
 //Delete education
 router.delete("/education/:eduid", auth, profileController.delete_education);
+//Get github user details
+router.get("/github/:username", profileController.get_github_info);
 module.exports = router;
