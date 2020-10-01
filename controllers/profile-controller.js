@@ -1,4 +1,5 @@
 const Profile = require("../models/Profile");
+const User = require("../models/User");
 
 // @route   GET api/profile/me
 //@desc     GET current user profile
@@ -105,14 +106,63 @@ module.exports.get_single_profile = async (req, res) => {
       user: req.params.uid,
     }).populate("user", ["name", "avatar"]);
     if (!profiles) {
-      return res.status(400).json({ msg: "There is no profile for this user" });
+      return res.status(400).json({ msg: "Profile not found" });
     }
     res.json(profiles);
   } catch (err) {
     console.error(err);
     if (err.kind == "ObjectId") {
-      return res.status(400).json({ msg: "There is no profie for this user" });
+      return res.status(400).json({ msg: "Profile not found" });
     }
     res.status(500).send("Internal Serval error");
+  }
+};
+
+// @route   DELETE user, profile, posts
+//@desc     GET single user with user id
+//@access   Private
+module.exports.delete_profile = async (req, res) => {
+  try {
+    //Remove Profile
+    await Profile.findOneAndRemove({
+      user: req.user.id,
+    });
+    //Remove user
+    await User.findOneAndRemove({ _id: req.user.id });
+    res.json("Profile and User removed successfully");
+  } catch (err) {
+    console.error(err);
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({ msg: "Profile not found" });
+    }
+    res.status(500).send("Internal Serval error");
+  }
+};
+
+// @route   profiles/experience
+//@desc     Update the profile experience field
+//@access   Private
+
+module.exports.update_profile = async (req, res) => {
+  const { title, location, company, from, to, current, description } = req.body;
+  const newExp = {
+    title,
+    location,
+    company,
+    from,
+    to,
+    current,
+    description,
+  };
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    profile.experience.unshift(newExp);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 };

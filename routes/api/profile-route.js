@@ -4,6 +4,9 @@ const auth = require("../../middleware/auth");
 const {
   validateProfilePost,
 } = require("../../middleware/validators/profile-post-validator");
+const {
+  updateProfileValidation,
+} = require("../../middleware/validators/profile-put-validation");
 const router = Router();
 
 //get single profile if exists with private route
@@ -14,5 +17,14 @@ router.post("/", auth, validateProfilePost, profileController.post_profile);
 router.get("/", profileController.get_profiles);
 //get single user with user Id
 router.get("/user/:uid", profileController.get_single_profile);
+//Delete user and profile associated with id
+router.delete("/", auth, profileController.delete_profile);
+//Update user profile experiences
+router.put(
+  "/experience",
+  auth,
+  updateProfileValidation,
+  profileController.update_profile
+);
 
 module.exports = router;
