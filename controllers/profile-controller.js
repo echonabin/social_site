@@ -156,13 +156,91 @@ module.exports.update_profile = async (req, res) => {
   };
   try {
     const profile = await Profile.findOne({ user: req.user.id });
+    // if (profile.experience) {
+    //   res.json({ msg: "Required field already fulfilled" });
+    // }
     profile.experience.unshift(newExp);
 
     await profile.save();
-
     res.json(profile);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
+  }
+};
+
+// @route   profiles/experience/:eid
+//@desc     delete experience
+//@access   Private
+
+module.exports.delete_experience = async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    const removeIndex = profile.experience
+      .map((item) => item.id)
+      .indexOf(req.params.eid);
+    profile.experience.splice(removeIndex, 1);
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Enternal server error.");
+  }
+};
+
+// @route   profiles/education
+//@desc     Update the profile education field
+//@access   Private
+
+module.exports.update_profile = async (req, res) => {
+  const {
+    school,
+    degree,
+    fieldofstudy,
+    from,
+    to,
+    current,
+    description,
+  } = req.body;
+  const newEdu = {
+    school,
+    degree,
+    fieldofstudy,
+    from,
+    to,
+    current,
+    description,
+  };
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    // if (profile.experience) {
+    //   res.json({ msg: "Required field already fulfilled" });
+    // }
+    profile.education.unshift(newEdu);
+
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
+
+// @route   profiles/education/:eduid
+//@desc     delete education
+//@access   Private
+
+module.exports.delete_education = async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    const removeIndex = profile.education
+      .map((item) => item.id)
+      .indexOf(req.params.eduid);
+    profile.education.splice(removeIndex, 1);
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Enternal server error.");
   }
 };

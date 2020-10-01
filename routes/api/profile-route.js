@@ -7,6 +7,10 @@ const {
 const {
   updateProfileValidation,
 } = require("../../middleware/validators/profile-put-validation");
+const {
+  updateProfileEducationValidation,
+} = require("../../middleware/validators/profile-put-validation");
+const { route } = require("./users-route");
 const router = Router();
 
 //get single profile if exists with private route
@@ -26,5 +30,15 @@ router.put(
   updateProfileValidation,
   profileController.update_profile
 );
-
+//Delete experiences
+router.delete("/experience/:eid", auth, profileController.delete_experience);
+//Update user profile education
+router.put(
+  "/education",
+  auth,
+  updateProfileEducationValidation,
+  profileController.update_profile
+);
+//Delete education
+router.delete("/education/:eduid", auth, profileController.delete_education);
 module.exports = router;
