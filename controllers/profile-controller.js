@@ -101,14 +101,18 @@ module.exports.get_profiles = async (req, res) => {
 
 module.exports.get_single_profile = async (req, res) => {
   try {
-    const userId = req.params.uid;
-    const profiles = await Profile.findOne({ user: userId }).populate("user", [
-      "name",
-      "avatar",
-    ]);
+    const profiles = await Profile.findOne({
+      user: req.params.uid,
+    }).populate("user", ["name", "avatar"]);
+    if (!profiles) {
+      return res.status(400).json({ msg: "There is no profile for this user" });
+    }
     res.json(profiles);
   } catch (err) {
     console.error(err);
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({ msg: "There is no profie for this user" });
+    }
     res.status(500).send("Internal Serval error");
   }
 };
