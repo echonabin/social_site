@@ -28,7 +28,7 @@ router.put(
   "/experience",
   auth,
   updateProfileValidation,
-  profileController.update_profile
+  profileController.update_experience
 );
 //Delete experiences
 router.delete("/experience/:eid", auth, profileController.delete_experience);
@@ -37,7 +37,7 @@ router.put(
   "/education",
   auth,
   updateProfileEducationValidation,
-  profileController.update_profile
+  profileController.update_education
 );
 //Delete education
 router.delete("/education/:eduid", auth, profileController.delete_education);

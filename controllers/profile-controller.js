@@ -2,8 +2,6 @@ const Profile = require("../models/Profile");
 const User = require("../models/User");
 const request = require("request");
 const config = require("config");
-const { response } = require("express");
-const { body } = require("express-validator");
 
 // @route   GET api/profile/me
 //@desc     GET current user profile
@@ -147,7 +145,7 @@ module.exports.delete_profile = async (req, res) => {
 //@desc     Update the profile experience field
 //@access   Private
 
-module.exports.update_profile = async (req, res) => {
+module.exports.update_experience = async (req, res) => {
   const { title, location, company, from, to, current, description } = req.body;
   const newExp = {
     title,
@@ -196,7 +194,7 @@ module.exports.delete_experience = async (req, res) => {
 //@desc     Update the profile education field
 //@access   Private
 
-module.exports.update_profile = async (req, res) => {
+module.exports.update_education = async (req, res) => {
   const {
     school,
     degree,
