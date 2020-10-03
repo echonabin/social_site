@@ -101,7 +101,35 @@ module.exports.like_post = async (req, res) => {
     res.json(post.likes);
   } catch (err) {
     console.error(err);
-    res.send(500).json("Internal Server Error");
+    res.status(500).json("Internal Server Error");
+  }
+};
+
+//@route       DELETE api/posts/:id
+//desc         unlike a post with a user
+//@access      Private
+
+module.exports.unlike_post = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    //Check if the post has been liked already
+    if (
+      post.likes.filter((like) => like.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: "Post had not been liked yet!" });
+    }
+    //Get remove index
+
+    const removeIndex = post.likes
+      .map((like) => like.user.toString())
+      .indexOf(req.user.id);
+    post.likes.splice(removeIndex, 1);
+    await post.save();
+    res.json(post.likes);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Internal Server Error");
   }
 };
 

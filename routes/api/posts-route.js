@@ -39,4 +39,11 @@ router.delete("/:id", auth, postController.delete_post);
 //@access      Private
 
 router.put("/likes/:id", auth, postController.like_post);
+
+//@route       DELETE api/posts/:id
+//desc         unlike a post with a user
+//@access      Private
+
+router.put("/unlikes/:id", auth, postController.unlike_post);
+
 module.exports = router;
