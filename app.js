@@ -16,7 +16,9 @@ mongoose
     useFindAndModify: false,
   })
   .then(
-    app.listen(port, () => console.log(`Social app listening on port ${port}`))
+    app.listen(port, () =>
+      console.log(`Social app listening on port http://localhost/${port}`)
+    )
   )
   .catch((err) => console.log(err));
 
