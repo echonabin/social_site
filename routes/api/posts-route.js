@@ -22,6 +22,12 @@ router.get("/", auth, postController.get_all_posts);
 
 router.get("/:id", auth, postController.get_single_post);
 
+//@route       PUT api/posts/:id
+//desc         update single posts from post id
+//@access      Private
+
+router.put("/:id", auth, postController.update_single_post);
+
 //@route       DELETE api/posts/:id
 //desc         delete single post provided with post id
 //@access      Private

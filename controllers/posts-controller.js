@@ -57,6 +57,31 @@ module.exports.get_single_post = async (req, res) => {
   }
 };
 
+//@route       PUT api/posts/:id
+//desc         update single posts from post id
+//@access      Private
+
+module.exports.update_single_post = async (req, res) => {
+  const user = await User.findById(req.user.id).select("-password");
+  const { text } = req.body;
+  const updatePost = {
+    text,
+  };
+  try {
+    const postId = req.params.id;
+    const post = await Post.findById(postId);
+    if (post.user.toString() === user._id.toString()) post.text = text;
+    else {
+      res.status(400).json("Can't update, this post dosen't belog to you");
+    }
+    const update = await post.save();
+    res.json(update);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 //@route       DELETE api/posts/:id
 //desc         delete single post provided with post id
 //@access      Private
