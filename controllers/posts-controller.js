@@ -82,6 +82,29 @@ module.exports.update_single_post = async (req, res) => {
   }
 };
 
+//@route       PUT api/posts/likes/:id
+//desc         Like single posts
+//@access      Private
+
+module.exports.like_post = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    //Check if the post has been liked already
+    if (
+      post.likes.filter((like) => like.user.toString() === req.user.id).length >
+      0
+    ) {
+      return res.status(400).json({ msg: "Post had been already liked!" });
+    }
+    post.likes.unshift({ user: req.user.id });
+    await post.save();
+    res.json(post.likes);
+  } catch (err) {
+    console.error(err);
+    res.send(500).json("Internal Server Error");
+  }
+};
+
 //@route       DELETE api/posts/:id
 //desc         delete single post provided with post id
 //@access      Private

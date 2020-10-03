@@ -34,4 +34,9 @@ router.put("/:id", auth, postController.update_single_post);
 
 router.delete("/:id", auth, postController.delete_post);
 
+//@route       UPDATE api/posts/:id
+//desc         like a post with a user
+//@access      Private
+
+router.put("/likes/:id", auth, postController.like_post);
 module.exports = router;
