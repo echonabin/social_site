@@ -18,7 +18,6 @@ const App = () => {
             <Route exact path='/register' component={Register} />
           </Switch>
         </section>
-        <h1>Hello</h1>
       </>
     </Router>
   );
