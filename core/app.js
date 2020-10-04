@@ -7,7 +7,7 @@ const usersRoute = require("./routes/api/users-route");
 const postsRoute = require("./routes/api/posts-route");
 const profilesRoute = require("./routes/api/profile-route");
 const authRoute = require("./routes/api/auth-route");
-const port = 3000;
+const port = 5000;
 mongoose
   .connect(db, {
     useUnifiedTopology: true,
