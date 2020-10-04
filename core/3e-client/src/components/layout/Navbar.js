@@ -1,22 +1,29 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className='navbar bg-dark'>
       <h1>
-        <a href='index.html'>
-          <i className='fas fa-code'></i> DevConnector
-        </a>
+        <NavLink to='/'>
+          <i className='fas fa-code'></i> 3e.dev
+        </NavLink>
       </h1>
       <ul>
         <li>
-          <a href='profiles.html'>Developers</a>
+          <NavLink to='/developers' activeStyle={{ color: "#17A2B8" }}>
+            Developers
+          </NavLink>
         </li>
         <li>
-          <a href='register.html'>Register</a>
+          <NavLink to='/register' activeStyle={{ color: "#17A2B8" }}>
+            Register
+          </NavLink>
         </li>
         <li>
-          <a href='login.html'>Login</a>
+          <NavLink to='/login' activeStyle={{ color: "#17A2B8" }}>
+            Login
+          </NavLink>
         </li>
       </ul>
     </nav>
