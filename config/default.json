@@ -1,6 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://echonabin:n481n7h494@cluster0.1am16.mongodb.net/dev_connector?retryWrites=true&w=majority",
-  "jwtSecret": "thisappsecret",
-  "githubClietId": "030914c112859d0e47db",
-  "githubClientSecret": "b6d24ebc094b5c990955381241688755b0660ee5"
-}

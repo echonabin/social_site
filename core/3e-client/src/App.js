@@ -1,10 +1,11 @@
 import React from "react";
+import "./App.sass";
 
 const App = () => {
   return (
-    <div>
-      <h1>Hello from social app.</h1>
-    </div>
+    <>
+      <h1>Hello</h1>
+    </>
   );
 };
 
