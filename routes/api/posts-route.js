@@ -46,4 +46,16 @@ router.put("/likes/:id", auth, postController.like_post);
 
 router.put("/unlikes/:id", auth, postController.unlike_post);
 
+//@route       Post api/posts/comment/:id
+//desc         comment on a post with a post id
+//@access      Private
+
+router.post("/comment/:id", auth, validatePost, postController.post_comment);
+
+//@route       DELETE api/posts/comment/:id/:comment_id
+//desc         delete comment from single post with provided post id and comment id
+//@access      Private
+
+router.delete("/comment/:id/:comment_id", auth, postController.delete_comment);
+
 module.exports = router;
