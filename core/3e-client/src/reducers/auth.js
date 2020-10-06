@@ -5,6 +5,7 @@ import {
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from "../types";
 
 const initialState = {
@@ -39,6 +40,15 @@ export default (state = initialState, { type, payload }) => {
     case AUTH_ERROR:
       localStorage.removeItem("token");
       return { ...state, token: null, isAuthenticated: false, loading: false };
+    case LOGOUT:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null,
+      };
     default:
       return state;
   }
