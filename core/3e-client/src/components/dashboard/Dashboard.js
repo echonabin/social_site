@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Experience from "./Experience";
+import Education from "./Education";
 
 const Dashboard = ({
   auth: { user },
@@ -28,6 +30,8 @@ const Dashboard = ({
       {profile !== null ? (
         <>
           <DashboardAction />
+          <Experience experience={profile.experience} />
+          <Education education={profile.education} />
         </>
       ) : (
         <>
