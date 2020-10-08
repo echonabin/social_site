@@ -1,7 +1,13 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 
-import { PROFILE_ERROR, GET_PROFILE, UPDATE_PROFILE } from "../types";
+import {
+  PROFILE_ERROR,
+  GET_PROFILE,
+  UPDATE_PROFILE,
+  DELETE_ACCOUNT,
+  CLEAR_PROFILE,
+} from "../types";
 
 //Get current user profile
 export const getCurrentProfile = () => async (dispatch) => {
@@ -111,5 +117,66 @@ export const addEducation = (FormData, history) => async (dispatch) => {
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
+  }
+};
+
+//Delete Experience
+
+export const deleteExperience = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/profiles/experience/${id}`);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+    dispatch(setAlert("Experience Removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//Delete Education
+
+export const deleteEducation = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/profiles/education/${id}`);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+    dispatch(setAlert("Education Removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//Delete profile and account
+
+export const deleteAccount = () => async (dispatch) => {
+  if (window.confirm("Are you sure this cannot be undone later!")) {
+    try {
+      const res = await axios.delete("/api/profiles");
+
+      dispatch({
+        type: DELETE_ACCOUNT,
+      });
+      dispatch({
+        type: CLEAR_PROFILE,
+      });
+      dispatch(setAlert("Account Removed successfully!", "danger"));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
   }
 };

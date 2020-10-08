@@ -6,6 +6,7 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
+  DELETE_ACCOUNT,
 } from "../types";
 
 const initialState = {
@@ -41,6 +42,7 @@ export default (state = initialState, { type, payload }) => {
       localStorage.removeItem("token");
       return { ...state, token: null, isAuthenticated: false, loading: false };
     case LOGOUT:
+    case DELETE_ACCOUNT:
       localStorage.removeItem("token");
       return {
         ...state,
@@ -49,6 +51,7 @@ export default (state = initialState, { type, payload }) => {
         loading: false,
         user: null,
       };
+
     default:
       return state;
   }

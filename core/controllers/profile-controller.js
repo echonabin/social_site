@@ -2,6 +2,7 @@ const Profile = require("../models/Profile");
 const User = require("../models/User");
 const request = require("request");
 const config = require("config");
+const Post = require("../models/Post");
 
 // @route   GET api/profile/me
 //@desc     GET current user profile
@@ -125,6 +126,8 @@ module.exports.get_single_profile = async (req, res) => {
 //@access   Private
 module.exports.delete_profile = async (req, res) => {
   try {
+    //Remove Posts
+    await Post.deleteMany({ user: req.user.id });
     //Remove Profile
     await Profile.findOneAndRemove({
       user: req.user.id,

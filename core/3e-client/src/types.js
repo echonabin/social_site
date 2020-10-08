@@ -22,3 +22,4 @@ export const CLEAR_PROFILE = "CLEAR_PROFILE";
 
 //Update Profile
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
