@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Spinner from "../layout/Spinner";
+import DashboardAction from "./DashboardAction";
 //Redux
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
@@ -25,7 +26,9 @@ const Dashboard = ({
         {"  "}Welcome {user && user.name}
       </p>
       {profile !== null ? (
-        <>Has</>
+        <>
+          <DashboardAction />
+        </>
       ) : (
         <>
           <p>
