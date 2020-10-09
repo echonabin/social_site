@@ -5,6 +5,7 @@ import {
   UPDATE_PROFILE,
   GET_PROFILES,
   GET_REPOS,
+  GET_PROFILES_BY_ID,
 } from "../types";
 
 const initialState = {
@@ -22,6 +23,8 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, profile: payload, loading: false };
     case GET_PROFILES:
       return { ...state, profiles: payload, loading: false };
+    case GET_PROFILES_BY_ID:
+      return { ...state, profile: payload, loading: false };
     case PROFILE_ERROR:
       return { ...state, error: payload, loading: false };
     case CLEAR_PROFILE:

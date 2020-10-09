@@ -21,6 +21,7 @@ export const GET_PROFILES = "GET_PROFILES";
 export const PROFILE_ERROR = "PROFILE_ERROR";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const GET_REPOS = "GET_REPOS";
+export const GET_PROFILES_BY_ID = "GET_PROFILES_BY_ID";
 
 //Update Profile
 export const UPDATE_PROFILE = "UPDATE_PROFILE";

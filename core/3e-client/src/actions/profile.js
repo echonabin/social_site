@@ -9,6 +9,7 @@ import {
   CLEAR_PROFILE,
   GET_PROFILES,
   GET_REPOS,
+  GET_PROFILES_BY_ID,
 } from "../types";
 
 //Get current user profile
@@ -48,7 +49,7 @@ export const getProfileByID = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profiles/user/${userId}`);
     dispatch({
-      type: GET_PROFILES,
+      type: GET_PROFILES_BY_ID,
       payload: res.data,
     });
   } catch (err) {
