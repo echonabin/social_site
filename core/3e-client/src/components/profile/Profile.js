@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import ProfileTop from "./ProfileTop";
+import ProfileAbout from "./ProfileAbout";
 
 //Redux
 import { connect } from "react-redux";
@@ -35,6 +36,7 @@ const Profile = ({
             )}
           <div class='profile-grid my-1'>
             <ProfileTop profile={profile} />
+            <ProfileAbout profile={profile} />
           </div>
         </>
       )}
