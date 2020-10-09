@@ -8,6 +8,12 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   const authLinks = (
     <ul>
       <li>
+        <NavLink to='/profiles' activeStyle={{ color: "#17A2B8" }}>
+          {"  "}
+          <span className='hide-sm'>Developers</span>
+        </NavLink>
+      </li>
+      <li>
         <NavLink to='/dashboard' activeStyle={{ color: "#17A2B8" }}>
           <i className='fas fa-user'></i>
           {"  "}
@@ -25,8 +31,9 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   const guestLinks = (
     <ul>
       <li>
-        <NavLink to='/developers' activeStyle={{ color: "#17A2B8" }}>
-          Developers
+        <NavLink to='/profiles' activeStyle={{ color: "#17A2B8" }}>
+          {"  "}
+          <span className='hide-sm'>Developers</span>
         </NavLink>
       </li>
       <li>
