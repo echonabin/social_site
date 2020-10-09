@@ -63,7 +63,7 @@ const EditProfile = ({
       youtube: loading || !profile.social ? "" : profile.youtube,
       instagram: loading || !profile.social ? "" : profile.instagram,
     });
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const onSubmit = (e) => (
     e.preventDefault(), createProfile(formData, history, true)
