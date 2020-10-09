@@ -68,6 +68,7 @@ const EditProfile = ({
   const onSubmit = (e) => (
     e.preventDefault(), createProfile(formData, history, true)
   );
+  console.log(formData);
   return (
     <>
       <h1 className='large text-primary'>Create Your Profile</h1>
