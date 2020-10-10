@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
+import ProfileExperience from "./ProfileExperience";
+import ProfileEducation from "./ProfileEducation";
 
 //Redux
 import { connect } from "react-redux";
@@ -37,6 +39,30 @@ const Profile = ({
           <div className='profile-grid my-1'>
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
+            <div className='profile-exp bg-white p-2'>
+              <h2 className='text-primary'>Experience</h2>
+              {profile.experience.length > 0 ? (
+                <>
+                  {profile.experience.map((exp) => (
+                    <ProfileExperience key={exp._id} experience={exp} />
+                  ))}
+                </>
+              ) : (
+                <h4>No Experience Credentials</h4>
+              )}
+            </div>
+            <div className='profile-edu bg-white p-2'>
+              <h2 className='text-primary'>Education</h2>
+              {profile.education.length > 0 ? (
+                <>
+                  {profile.education.map((edu) => (
+                    <ProfileEducation key={edu._id} education={edu} />
+                  ))}
+                </>
+              ) : (
+                <h4>No Education Credentials</h4>
+              )}
+            </div>
           </div>
         </>
       )}
