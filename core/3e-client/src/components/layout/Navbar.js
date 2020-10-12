@@ -14,6 +14,12 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
         </NavLink>
       </li>
       <li>
+        <NavLink to='/posts' activeStyle={{ color: "#17A2B8" }}>
+          {"  "}
+          <span className='hide-sm'>Posts</span>
+        </NavLink>
+      </li>
+      <li>
         <NavLink to='/dashboard' activeStyle={{ color: "#17A2B8" }}>
           <i className='fas fa-user'></i>
           {"  "}

@@ -26,3 +26,7 @@ export const GET_PROFILES_BY_ID = "GET_PROFILES_BY_ID";
 //Update Profile
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+
+//POSTS
+export const GET_POST = "GET_POST";
+export const POST_ERROR = "POST_ERROR";
