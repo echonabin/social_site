@@ -18,7 +18,7 @@ export default (state = initialState, { type, payload }) => {
     case GET_POST:
       return { ...state, posts: payload, loading: false };
     case ADD_POST:
-      return { ...state, posts: [...state.posts, payload], loading: false };
+      return { ...state, posts: [payload, ...state.posts], loading: false };
     case DELETE_POST:
       return {
         ...state,
