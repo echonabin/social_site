@@ -30,7 +30,6 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 };
 
 Posts.propTypes = {
-  getPost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
 
