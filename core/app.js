@@ -7,7 +7,8 @@ const usersRoute = require("./routes/api/users-route");
 const postsRoute = require("./routes/api/posts-route");
 const profilesRoute = require("./routes/api/profile-route");
 const authRoute = require("./routes/api/auth-route");
-const port = 5000;
+const path = require("path");
+const port = process.env.PORT || 5000;
 mongoose
   .connect(db, {
     useUnifiedTopology: true,
@@ -27,3 +28,13 @@ app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoute);
 app.use("/api/profiles", profilesRoute);
 app.use("/api/auth", authRoute);
+
+//Serve static assets
+if (process.env.NODE_ENV === "production") {
+  //Set static file
+  app.use(express.static("3e-client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "3e-client", "build", "index.html"));
+  });
+}
